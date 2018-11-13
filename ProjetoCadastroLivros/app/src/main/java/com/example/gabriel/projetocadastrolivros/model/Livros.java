@@ -2,16 +2,15 @@ package com.example.gabriel.projetocadastrolivros.model;
 
 import java.io.Serializable;
 
-/**
- * Created by Sthe on 12/08/2017.
- */
 
 public class Livros implements  Serializable{
 
     private Long id;
+    private int isbn;
     private String nomeLivro;
-    private String descricao;
-    private int quantidade;
+    private String edicao;
+    private String autores;
+    private long idEditora;
 
     @Override
     public String toString() {
@@ -34,19 +33,35 @@ public class Livros implements  Serializable{
         this.nomeLivro = nomeLivro;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getEdicao() {
+        return edicao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setEdicao(String edicao) {
+        this.edicao = edicao;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public String getAutores() {
+        return autores;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setAutores(String autores) {
+        this.autores = autores;
+    }
+
+    public int getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
+    }
+
+    public long getIdEditora() {
+        return idEditora;
+    }
+
+    public void setIdEditora(long idEditora) {
+        this.idEditora = idEditora;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.gabriel.projetocadastrolivros;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,55 +12,52 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.gabriel.projetocadastrolivros.BDHelper.LivrosBD;
+import com.example.gabriel.projetocadastrolivros.model.Editora;
 import com.example.gabriel.projetocadastrolivros.model.FormularioEditora;
-import com.example.gabriel.projetocadastrolivros.model.FormularioLivros;
-import com.example.gabriel.projetocadastrolivros.model.Livros;
 
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class EditoraActivity extends AppCompatActivity {
 
     ListView lista;
     LivrosBD bdHelper;
-    ArrayList<Livros> listview_Livros;
-    Livros livro;
+    ArrayList<Editora> listview_Editora;
+    Editora editora;
     ArrayAdapter adapter;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_editora);
 
-
-        Button btnCadastrar = (Button) findViewById(R.id.btn_Cadastrar);
-        btnCadastrar.setOnClickListener(new android.view.View.OnClickListener() {
+        Button buttonCadastrarEditora = (Button) findViewById(R.id.buttonCadastrarEditora);
+        buttonCadastrarEditora.setOnClickListener(new android.view.View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FormularioLivros.class);
+                Intent intent = new Intent(EditoraActivity.this, FormularioEditora.class);
                 startActivity(intent);
             }
         });
 
-        Button btn_CadastrarEditora = (Button) findViewById(R.id.btn_CadastrarEditora);
-        btn_CadastrarEditora.setOnClickListener(new android.view.View.OnClickListener() {
+        Button buttonVoltarLivros = (Button) findViewById(R.id.buttonVoltarLivros);
+        buttonVoltarLivros.setOnClickListener(new android.view.View.OnClickListener(){
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EditoraActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(EditoraActivity.this, FormularioEditora.class);
+                finish();
             }
+
         });
 
-
-        lista = (ListView) findViewById(R.id.listview_Livros);
+        lista = (ListView) findViewById(R.id.ListView_Editora);
         registerForContextMenu(lista);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 
-                Livros livroEscolhido = (Livros) adapter.getItemAtPosition(position);
+                Editora editoraEscolhida = (Editora) adapter.getItemAtPosition(position);
 
-                Intent i = new Intent(MainActivity.this, FormularioLivros.class);
-                i.putExtra("livro-escolhido", livroEscolhido);
+                Intent i = new Intent(EditoraActivity.this, FormularioEditora.class);
+                i.putExtra("editora-escolhida", editoraEscolhida);
                 startActivity(i);
             }
         });
@@ -68,22 +65,24 @@ public class MainActivity extends AppCompatActivity {
         lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-                livro = (Livros) adapter.getItemAtPosition(position);
+                editora = (Editora) adapter.getItemAtPosition(position);
                 return false;
             }
         });
+
+
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        MenuItem menuDelete = menu.add("Deletar Este Livro");
+        MenuItem menuDelete = menu.add("Deletar Esta Editora");
         menuDelete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                bdHelper = new LivrosBD(MainActivity.this);
-                bdHelper.deletarLivro(livro);
+                bdHelper = new LivrosBD(EditoraActivity.this);
+                bdHelper.deletarEditora(editora);
                 bdHelper.close();
-                carregarLivro();
+                carregarEditora();
                 return true;
             }
         });
@@ -92,19 +91,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        carregarLivro();
+        carregarEditora();
     }
 
-    public void carregarLivro(){
-        bdHelper = new LivrosBD(MainActivity.this);
-        listview_Livros = bdHelper.getLista();
+    public void carregarEditora(){
+        bdHelper = new LivrosBD(EditoraActivity.this);
+        listview_Editora = bdHelper.getListEditora();
         bdHelper.close();
 
-        if (listview_Livros != null){
-            adapter = new ArrayAdapter<Livros>(MainActivity.this, android.R.layout.simple_list_item_1,listview_Livros);
+        if (listview_Editora != null){
+            adapter = new ArrayAdapter<Editora>(EditoraActivity.this, android.R.layout.simple_list_item_1,listview_Editora);
             lista.setAdapter(adapter);
         }
-          //finish();
+        //finish();
     }
-
 }

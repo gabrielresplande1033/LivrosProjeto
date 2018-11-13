@@ -9,31 +9,44 @@
         android:layout_height="495dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="10dp">
+        tools:layout_editor_absoluteY="2dp">
+
+        <EditText
+            android:id="@+id/editText_Isbn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Isbn"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editText_NomeLivro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Inserir nome"
+            android:hint="Titulo"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText_Descricao"
+            android:id="@+id/editText_Edicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Descrição do Produto"
+            android:hint="Edicao"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText_Quantidade"
+            android:id="@+id/editText_Autores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Quantidade"
+            android:hint="Autores"
             android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/spinnerEditora"
+            android:layout_width="match_parent"
+            android:layout_height="41dp" />
 
         <Button
             android:id="@+id/btn_Poliform"
