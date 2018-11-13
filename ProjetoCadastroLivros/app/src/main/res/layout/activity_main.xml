@@ -24,7 +24,7 @@
             android:id="@+id/btn_CadastrarEditora"
             android:layout_width="match_parent"
             android:layout_height="34dp"
-            android:text="Button" />
+            android:text="Cadastrar Editora" />
 
         <Button
             android:id="@+id/btn_Cadastrar"
