@@ -108,7 +108,18 @@ public class LivrosBD extends SQLiteOpenHelper {
         Cursor cursor = getWritableDatabase().query("livros",columns,null,null,null,null,null,null);
         ArrayList<Livros> livros = new ArrayList<Livros>();
 
+
         while (cursor.moveToNext()){
+
+            String selectQuery = "SELECT * FROM editora WHERE idEditora =" + cursor.getLong(5);
+            SQLiteDatabase banco = this.getWritableDatabase();
+            Cursor cursorEdit = banco.rawQuery(selectQuery, null);
+
+            cursorEdit.moveToFirst();
+
+            String nomeString = cursorEdit.getString(1);
+            cursorEdit.close();
+
             Livros livro = new Livros();
             livro.setId(cursor.getLong(0));
             livro.setIsbn(cursor.getInt(1));
@@ -116,6 +127,7 @@ public class LivrosBD extends SQLiteOpenHelper {
             livro.setEdicao(cursor.getString(3));
             livro.setAutores(cursor.getString(4));
             livro.setIdEditora(cursor.getLong(5));
+            livro.setEditoraNome(nomeString);
 
             livros.add(livro);
         }

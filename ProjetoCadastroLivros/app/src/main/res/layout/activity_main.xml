@@ -18,21 +18,21 @@
         <ListView
             android:id="@+id/listview_Livros"
             android:layout_width="match_parent"
-            android:layout_height="428dp" />
+            android:layout_height="413dp" />
 
         <Button
             android:id="@+id/btn_CadastrarEditora"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
+            android:layout_height="39dp"
             android:text="Cadastrar Editora" />
 
         <Button
             android:id="@+id/btn_Cadastrar"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="74dp"
             android:layout_weight="0.67"
-            android:text="Cadastrar" />
+            android:text="Cadastrar Livro" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

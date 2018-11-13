@@ -10,11 +10,12 @@ public class Livros implements  Serializable{
     private String nomeLivro;
     private String edicao;
     private String autores;
+    private String editoraNome;
     private long idEditora;
 
     @Override
     public String toString() {
-        return nomeLivro.toString();
+        return nomeLivro + " - " + editoraNome;
     }
 
     public Long getId() {
@@ -63,5 +64,9 @@ public class Livros implements  Serializable{
 
     public void setIdEditora(long idEditora) {
         this.idEditora = idEditora;
+    }
+
+    public void setEditoraNome(String editoraNome) {
+        this.editoraNome = editoraNome;
     }
 }
